@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function AlumniDirectory() {
   const [alumni, setAlumni] = useState([]);
+  const [searchYear, setSearchYear] = useState(""); // 🔹 search state
 
   // 🔹 GET DATA
   const fetchAlumni = async () => {
@@ -32,11 +33,10 @@ export default function AlumniDirectory() {
       fetchAlumni();
     } catch (err) {
       toast.error("Delete Failed ❌");
-      console.log(err);
     }
   };
 
-  // 🔹 UPDATE (simple prompt)
+  // 🔹 UPDATE
   const handleUpdate = async (item) => {
     const updatedData = {
       full_name: prompt("Full Name", item.full_name),
@@ -58,17 +58,30 @@ export default function AlumniDirectory() {
       fetchAlumni();
     } catch (err) {
       toast.error("Update Failed ❌");
-      console.log(err);
     }
   };
+
+  // 🔹 FILTER LOGIC
+  const filteredAlumni = alumni.filter((item) =>
+    item.passing_year.toString().includes(searchYear),
+  );
 
   return (
     <>
       <div className="alumni-container">
         <h2>🎓 Alumni Directory</h2>
 
+        {/* 🔍 SEARCH BAR */}
+        <input
+          type="text"
+          placeholder="Search by Passing Year !"
+          value={searchYear}
+          onChange={(e) => setSearchYear(e.target.value)}
+          className="search-input"
+        />
+
         <div className="alumni-grid">
-          {alumni.map((item) => (
+          {filteredAlumni.map((item) => (
             <div className="alumni-card" key={item.id}>
               <img
                 src={item.photo || "https://via.placeholder.com/150"}
@@ -104,7 +117,6 @@ export default function AlumniDirectory() {
         </div>
       </div>
 
-      {/* 🔔 Toast Container */}
       <ToastContainer position="top-right" autoClose={2000} />
     </>
   );

@@ -13,7 +13,7 @@ body {
 }
 
 .alumni-container {
-  padding: 100px 20px 60px;
+  padding: 10px 20px 60px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -365,4 +365,9 @@ body {
 
 .alumni-card p:last-of-type {
   margin-bottom: 15px;
+}
+
+.search-input{
+  margin-bottom : 40px;
+
 }
