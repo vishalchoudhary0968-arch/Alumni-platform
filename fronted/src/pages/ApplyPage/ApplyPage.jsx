@@ -1,29 +1,36 @@
 import React from "react";
+import axios from "axios"; // ✅ add this
 import "./ApplyPage.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ApplyPage() {
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     let Data = {
-      name: e.target[0].value,
+      full_name: e.target[0].value,
       email: e.target[1].value,
       company: e.target[2].value,
-      role: e.target[3].value,
-      work_type: e.target[4].value,
-      location: e.target[5].value,
-      skills: e.target[6].value,
-      experience: e.target[7].value,
-      resume: e.target[8].value,
+      work_type: e.target[3].value,
+      location: e.target[4].value,
+      skills: e.target[5].value,
+      experience: e.target[6].value,
+      resume: e.target[7].value,
     };
 
-    console.log("Form Data:", Data);
+    try {
+      await axios.post(
+        "http://127.0.0.1:8000/api/apply/", // ✅ correct
+        Data,
+      );
 
-    toast.success("Application Submitted ✅");
-
-    e.target.reset();
+      toast.success("Application Submitted ✅");
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+      toast.error("Error submitting ❌");
+    }
   }
 
   return (
@@ -36,18 +43,13 @@ export default function ApplyPage() {
           <input placeholder="Full Name" />
           <br />
           <br />
-
           <input placeholder="Email" />
           <br />
           <br />
-
           <input placeholder="Company Name" />
           <br />
           <br />
-
-          <input placeholder="Role" />
-          <br />
-          <br />
+          
 
           <select>
             <option value="">Work Type</option>
@@ -61,15 +63,12 @@ export default function ApplyPage() {
           <input placeholder="Location" />
           <br />
           <br />
-
           <input placeholder="Skills" />
           <br />
           <br />
-
           <input placeholder="Experience" />
           <br />
           <br />
-
           <input placeholder="Resume Link" />
           <br />
           <br />

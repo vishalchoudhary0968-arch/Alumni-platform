@@ -11,8 +11,8 @@
   top: 0;
   left: 0;
   width: 100%;
-    background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 25%, #bbdefb 50%, #e3f2fd 75%, #ffffff 100%);
-  padding: 5px 30px;
+  background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 25%, #bbdefb 50%, #e3f2fd 75%, #ffffff 100%);
+  padding: 18px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,7 +53,7 @@
 }
 
 .navbar-logo a {
-  font-size: 26px;
+  font-size: 25px;
   font-weight: 700;
   background: linear-gradient(135deg, #1e90ff 0%, #00bfff 50%, #0066cc 100%);
   -webkit-background-clip: text;
@@ -94,7 +94,7 @@
   display: flex;
   list-style: none;
   align-items: center;
-  gap: 5px;
+  /* gap: px; */
   position: relative;
   z-index: 2;
 }

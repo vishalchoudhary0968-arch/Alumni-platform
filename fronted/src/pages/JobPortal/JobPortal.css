@@ -90,3 +90,69 @@
     margin-top: 10px;
   }
 }
+
+
+.create-job {
+  margin-top: 60px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.create-job:hover {
+  transform: translateY(-3px);
+}
+
+.create-job h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+.create-job form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.create-job input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.create-job input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.create-job button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.create-job button:hover {
+  background: linear-gradient(135deg, #0056b3, #0096c7);
+  transform: scale(1.03);
+}
+
+.create-job button:active {
+  transform: scale(0.98);
+}

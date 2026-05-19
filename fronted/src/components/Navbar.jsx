@@ -47,14 +47,13 @@ const Navbar = () => {
               <Link to="/events">Events</Link>
             </li>
             <li>
-              <Link to="/donation">Donation</Link>
+              <Link to="placementPortal">PlacementPortal</Link>
             </li>
             <li>
               <Link to="/success">SuccessStories</Link>
             </li>
-            <li>
-              {/* <Link to="/profile">Profile</Link> */}
-            </li>
+            <li>{/* <Link to="/profile">Profile</Link> */}</li>
+
             <li>
               <Link to="/register">Register</Link>
             </li>

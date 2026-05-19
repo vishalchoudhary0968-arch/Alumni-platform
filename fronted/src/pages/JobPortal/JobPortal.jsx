@@ -1,10 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./JobPortal.css";
 
 const JobPortal = () => {
   const navigate = useNavigate();
 
+  // 🔹 Create Job Form State
+  const [form, setForm] = useState({
+    company: "",
+    logo: "",
+    position: "",
+    location: "",
+    posted: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleCreateJob = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://127.0.0.1:8000/api/job/jobs/create/", form);
+      alert("Job Created ✅");
+
+      setForm({
+        company: "",
+        logo: "",
+        position: "",
+        location: "",
+        posted: "",
+      });
+    } catch (err) {
+      console.log(err);
+      alert("Error ❌");
+    }
+  };
+
+  // 🔹 Existing Jobs (Same as yours)
   const jobs = [
     {
       id: 1,
@@ -54,68 +88,13 @@ const JobPortal = () => {
       location: "Chennai",
       posted: "4 days ago",
     },
-    {
-      id: 7,
-      company: "Accenture",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg",
-      position: "Cloud Engineer",
-      location: "Bangalore",
-      posted: "6 days ago",
-    },
-    {
-      id: 8,
-      company: "Cognizant",
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQItTEO7Qoqc5FGT_NYj2MTUEKG-5P-D_nIDw&s",
-      position: "Python Developer",
-      location: "Hyderabad",
-      posted: "2 weeks ago",
-    },
-    {
-      id: 9,
-      company: "IBM",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-      position: "Data Analyst",
-      location: "Mumbai",
-      posted: "3 days ago",
-    },
-    {
-      id: 10,
-      company: "Google",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-      position: "Software Engineer",
-      location: "Remote",
-      posted: "1 week ago",
-    },
-    {
-      id: 11,
-      company: "Microsoft",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-      position: "Backend Engineer",
-      location: "Hyderabad",
-      posted: "2 days ago",
-    },
-    {
-      id: 12,
-      company: "Amazon",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-      position: "DevOps Engineer",
-      location: "Bangalore",
-      posted: "5 days ago",
-    },
-    {
-      id: 13,
-      company: "Flipkart",
-      logo: "https://images.icon-icons.com/729/PNG/512/flipkart_icon-icons.com_62718.png",
-      position: "UI/UX Designer",
-      location: "Bangalore",
-      posted: "1 week ago",
-    },
   ];
 
   return (
     <div className="job-container">
       <h1>Job Opportunities</h1>
 
+      {/* 🔹 JOB LIST */}
       {jobs.map((job) => (
         <div key={job.id} className="job-card">
           <img src={job.logo} alt="logo" className="logo" />
@@ -137,6 +116,50 @@ const JobPortal = () => {
           </button>
         </div>
       ))}
+
+      {/* 🔻 CREATE JOB SECTION */}
+      <div className="create-job">
+        <h2>Create Job</h2>
+
+        <form onSubmit={handleCreateJob}>
+          <input
+            name="company"
+            value={form.company}
+            onChange={handleChange}
+            placeholder="Company"
+          />
+
+          <input
+            name="logo"
+            value={form.logo}
+            onChange={handleChange}
+            placeholder="Logo URL"
+          />
+
+          <input
+            name="position"
+            value={form.position}
+            onChange={handleChange}
+            placeholder="Position"
+          />
+
+          <input
+            name="location"
+            value={form.location}
+            onChange={handleChange}
+            placeholder="Location"
+          />
+
+          <input
+            name="posted"
+            value={form.posted}
+            onChange={handleChange}
+            placeholder="Posted (e.g. 2 days ago)"
+          />
+
+          <button type="submit">Create Job</button>
+        </form>
+      </div>
     </div>
   );
 };

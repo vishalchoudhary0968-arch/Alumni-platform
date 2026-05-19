@@ -6,7 +6,7 @@ import Register from './pages/Regester/Regester'
 import AlumniDirectory from './pages/AlumniDirectory/AlumniDirectory'
 import JobPortal from "./pages/JobPortal/JobPortal";
 import EventsPage from './pages/EventsPage/EventsPage'
-import DonationPage from "./pages/DonationPage/DonationPage";
+import PlacementPortal from "./pages/PlacementPortal/PlacementPortal"
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ApplyPage from "./pages/ApplyPage/ApplyPage";
@@ -25,8 +25,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/alumni" element={<AlumniDirectory />} />
         <Route path="/jobs" element={<JobPortal />} />
-        <Route path="/eventsPage" element={<EventsPage />} />
-        <Route path="/donation" element={<DonationPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/placementPortal" element={<PlacementPortal />} />
         <Route path="/profilePage" element={<ProfilePage />} />
         <Route path="/apply/:id" element={<ApplyPage />} />
       </Routes>

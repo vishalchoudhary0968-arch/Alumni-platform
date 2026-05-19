@@ -6,7 +6,26 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function AlumniDirectory() {
   const [alumni, setAlumni] = useState([]);
-  const [searchYear, setSearchYear] = useState(""); // 🔹 search state
+  const [searchYear, setSearchYear] = useState("");
+
+  // 🔐 LOGIN STATE
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  // 🔐 STORED CREDENTIALS
+  const correct_username = "vishal";
+  const correct_password = "0968";
+
+  // 🔐 LOGIN FUNCTION
+  const handleLogin = () => {
+    if (username === correct_username && password === correct_password) {
+      setIsLoggedIn(true);
+      toast.success("Login Successful ✅");
+    } else {
+      toast.error("Invalid username or password ❌");
+    }
+  };
 
   // 🔹 GET DATA
   const fetchAlumni = async () => {
@@ -15,13 +34,14 @@ export default function AlumniDirectory() {
       setAlumni(res.data);
     } catch (err) {
       toast.error("Failed to fetch data ❌");
-      console.log(err);
     }
   };
 
   useEffect(() => {
-    fetchAlumni();
-  }, []);
+    if (isLoggedIn) {
+      fetchAlumni();
+    }
+  }, [isLoggedIn]);
 
   // 🔹 DELETE
   const handleDelete = async (id) => {
@@ -31,7 +51,7 @@ export default function AlumniDirectory() {
       await axios.delete(`http://127.0.0.1:8000/api/delete/${id}/`);
       toast.success("Deleted Successfully ✅");
       fetchAlumni();
-    } catch (err) {
+    } catch {
       toast.error("Delete Failed ❌");
     }
   };
@@ -56,22 +76,49 @@ export default function AlumniDirectory() {
       );
       toast.success("Updated Successfully ✨");
       fetchAlumni();
-    } catch (err) {
+    } catch {
       toast.error("Update Failed ❌");
     }
   };
 
-  // 🔹 FILTER LOGIC
+  // 🔹 FILTER
   const filteredAlumni = alumni.filter((item) =>
     item.passing_year.toString().includes(searchYear),
   );
 
+  // ❌ LOGIN UI (jab tak login nahi hua)
+  if (!isLoggedIn) {
+    return (
+      <div className="login-container">
+        <div className="login-box">
+          <h2>🔐 Login Required</h2>
+
+          <input
+            type="text"
+            placeholder="Username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button onClick={handleLogin}>Login</button>
+        </div>
+
+        <ToastContainer />
+      </div>
+    );
+  }
+
+  // ✅ MAIN UI (login ke baad hi dikhega)
   return (
     <>
       <div className="alumni-container">
         <h2>🎓 Alumni Directory</h2>
 
-        {/* 🔍 SEARCH BAR */}
         <input
           type="text"
           placeholder="Search by Passing Year !"
