@@ -7,7 +7,7 @@ import AlumniDirectory from './pages/AlumniDirectory/AlumniDirectory'
 import JobPortal from "./pages/JobPortal/JobPortal";
 import EventsPage from './pages/EventsPage/EventsPage'
 import PlacementPortal from "./pages/PlacementPortal/PlacementPortal"
-import ProfilePage from './pages/ProfilePage/ProfilePage'
+import SuccessStories from "./pages/Successstories/Successstories"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ApplyPage from "./pages/ApplyPage/ApplyPage";
 
@@ -27,7 +27,7 @@ function App() {
         <Route path="/jobs" element={<JobPortal />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/placementPortal" element={<PlacementPortal />} />
-        <Route path="/profilePage" element={<ProfilePage />} />
+        <Route path="/success" element={<SuccessStories />} />
         <Route path="/apply/:id" element={<ApplyPage />} />
       </Routes>
     </BrowserRouter>

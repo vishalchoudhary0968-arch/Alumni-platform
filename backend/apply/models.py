@@ -7,9 +7,9 @@ class Application(models.Model):
 
     work_type = models.CharField(max_length=50, blank=True)
     location = models.CharField(max_length=100)
-    skills = models.CharField(max_length=200)   # ✅ fixed name
-    experience = models.IntegerField()   # ✅ years (0,1,2,3...)
-    resume = models.URLField(blank=True)   # ✅ resume link
+    skills = models.CharField(max_length=200)   
+    experience = models.IntegerField()
+    resume = models.URLField(blank=True)   
     created_at = models.DateTimeField(auto_now_add=True)
 
     # ✅ NEW FIELD

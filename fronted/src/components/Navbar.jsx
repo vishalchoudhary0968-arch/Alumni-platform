@@ -49,10 +49,10 @@ const Navbar = () => {
             <li>
               <Link to="placementPortal">PlacementPortal</Link>
             </li>
+
             <li>
-              <Link to="/success">SuccessStories</Link>
+              <Link to="/Success">SuccessStories</Link>
             </li>
-            <li>{/* <Link to="/profile">Profile</Link> */}</li>
 
             <li>
               <Link to="/register">Register</Link>
